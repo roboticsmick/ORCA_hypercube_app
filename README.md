@@ -36,7 +36,7 @@ Use a virtual environment to manage dependencies.
 First, get the project files onto your computer.
 ```bash
 git clone https://github.com/roboticsmick/ORCA_hypercube_app/
-cd ORCA-spectra-app
+cd ORCA_hypercube_app
 ```
 
 **2. Create and Activate a Virtual Environment**
