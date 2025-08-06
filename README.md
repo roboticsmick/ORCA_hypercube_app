@@ -15,10 +15,8 @@ This is a standalone Dash Plotly application for locally viewing and analyzing h
 
 ## Project Structure
 
-The repository is structured to be a self-contained Dash application. The `assets` folder is automatically loaded by Dash, so the stylesheet and logo must be placed there.
-
 ```
-spectra-viewer-app/
+ORCA_hypercube_app/
 ├── assets/
 │   ├── ORCAlogo.png          (Application logo)
 │   └── ORCA_stylesheet.css   (Custom CSS styles)
@@ -31,13 +29,13 @@ spectra-viewer-app/
 
 ## Installation and Setup
 
-To run this application on your local machine, you will need Python 3.8 or newer. It is highly recommended to use a virtual environment to manage dependencies.
+Use a virtual environment to manage dependencies.
 
 **1. Clone or Download the Repository**
 
 First, get the project files onto your computer.
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/roboticsmick/ORCA_hypercube_app/
 cd ORCA-spectra-app
 ```
 
