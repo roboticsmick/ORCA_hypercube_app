@@ -1,0 +1,9 @@
+# Core Dash libraries for the web application
+dash
+dash-bootstrap-components
+
+# Library for scientific computing (handling image arrays)
+numpy
+
+# Library to read and write NetCDF files (.nc format)
+netCDF4
