@@ -2,13 +2,13 @@
 """
 ORCA Hyperspectral Viewer Application
 
-Purpose: Interactive web application for viewing and analyzing hyperspectral image data
-stored in NetCDF format. Allows RGB visualization and spectral analysis of individual pixels.
+Purpose: Interactive web application for viewing and analysing hyperspectral image data
+stored in nc file format. Allows RGB visualisation and spectral analysis of individual pixels.
 
 Run command: python app.py
 Access via: http://127.0.0.1:8050/
 
-Company: ORCA Engineering
+Author: Michael Venz
 """
 
 import os
@@ -23,7 +23,7 @@ import numpy.ma as ma
 from netCDF4 import Dataset
 
 # =============================================================================
-# 1. APP INITIALIZATION & BANNER
+# 1. APP INITIALISATION & BANNER
 # =============================================================================
 
 app = dash.Dash(
@@ -153,15 +153,15 @@ def get_rgb_image_figure(red_idx, green_idx, blue_idx, filename, fileFolder):
     if vmax == vmin:
         vmax = vmin + 1
 
-    # Clip outliers and normalize
+    # Clip outliers and normalise
     img_clipped = np.clip(img, vmin, vmax)
-    img_normalized = (img_clipped - vmin) / (vmax - vmin)
+    img_normalised = (img_clipped - vmin) / (vmax - vmin)
 
     # Handle any remaining NaN values
-    img_normalized = np.nan_to_num(img_normalized, nan=0.0)
+    img_normalised = np.nan_to_num(img_normalised, nan=0.0)
 
     # Scale to 0-255 for display
-    rgb_img_rescaled = (img_normalized * 255).astype(np.uint8)
+    rgb_img_rescaled = (img_normalised * 255).astype(np.uint8)
 
     # Create the figure
     fig = px.imshow(rgb_img_rescaled)
@@ -176,7 +176,7 @@ def get_rgb_image_figure(red_idx, green_idx, blue_idx, filename, fileFolder):
 
 def find_optimal_rgb_bands(datacube, wavelengths):
     """
-    Finds the optimal R, G, and B bands by maximizing variance within defined
+    Finds the optimal R, G, and B bands by maximising variance within defined
     spectral windows. This creates a data-driven, contrast-enhanced RGB image.
 
     This is especially useful for environments like underwater where standard
@@ -259,7 +259,7 @@ def spectra_display_settings():
             ),
             html.Hr(),
             html.Label(
-                "3. Set wavelengths for RGB visualization:",
+                "3. Set wavelengths for RGB visualisation:",
                 className="input-path-title",
             ),
             html.Label("Red Channel:", className="input-path-tip"),
@@ -300,7 +300,7 @@ def spectra_display_settings():
 
 def create_initial_figures():
     """
-    Creates empty figures for initialization to avoid errors.
+    Creates empty figures for initialisation to avoid errors.
 
     Returns:
         tuple: (initial_image_fig, initial_spectrum_fig)
@@ -336,7 +336,7 @@ def create_initial_figures():
     return initial_image_fig, initial_spectrum_fig
 
 
-# Initialize figures
+# Initialise figures
 initial_image_fig, initial_spectrum_fig = create_initial_figures()
 
 # Main application layout
@@ -537,7 +537,7 @@ def display_pixel_spectrum(click_data, filename, folder_path):
 def update_slider_properties(filename, folder_path):
     """
     Updates slider properties when a new file is selected.
-    **MODIFIED** to automatically select the optimal R, G, and B channels
+    to automatically select the optimal R, G, and B channels
     based on variance within spectral windows.
     """
     if not filename or not folder_path:
@@ -553,18 +553,16 @@ def update_slider_properties(filename, folder_path):
         int(max_idx): f"{wavelengths[-1]:.0f}nm",
     }
 
-    # --- NEW, FULLY AUTOMATED LOGIC ---
-    # Use our new function to find the best R, G, and B bands based on data
+    # Find the best R, G, and B bands based on data
     red_idx, green_idx, blue_idx = find_optimal_rgb_bands(datacube, wavelengths)
-    # --- END OF NEW LOGIC ---
 
     return (
         max_idx,
         max_idx,
         max_idx,
-        red_idx,  # Default Red (Optimized)
-        green_idx,  # Default Green (Optimized)
-        blue_idx,  # Default Blue (Optimized)
+        red_idx,  # Default Red (Optimised)
+        green_idx,  # Default Green (Optimised)
+        blue_idx,  # Default Blue (Optimised)
         marks,
         marks,
         marks,
