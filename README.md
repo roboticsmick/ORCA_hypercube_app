@@ -1,4 +1,4 @@
-# ORCA Hypercube RGB Spectra
+# ORCA Hypercube RGB Spectra App
 
 This is a standalone Dash Plotly application for locally viewing and analysing hyperspectral data stored in NetCDF (`.nc`) files. Designed for marine robotics applications, it allows users to generate RGB composite images from any three spectral bands, view single greyscale bands, and inspect the spectral signature of any pixel by clicking on the image.
 
