@@ -320,7 +320,7 @@ def create_initial_figures():
         template="plotly_dark",
         title="Spectrum Plot",
         xaxis_title="Wavelength (nm)",
-        yaxis_title="Reflectance",
+        yaxis_title="Intensity",
         annotations=[
             {
                 "text": "Click on the image to plot a spectrum",
