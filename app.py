@@ -59,7 +59,6 @@ def build_banner():
         ],
     )
 
-
 # =============================================================================
 # 2. HELPER FUNCTIONS FOR DATA HANDLING (No Changes)
 # =============================================================================
@@ -170,7 +169,6 @@ def find_optimal_rgb_bands(datacube, wavelengths):
     else:
         final_red_idx, _ = get_best_band_in_window(search_windows_nm["red_wide"])
     return (final_red_idx, green_idx, blue_idx)
-
 
 # =============================================================================
 # 3. APP LAYOUT DEFINITION (No Changes)
@@ -377,12 +375,9 @@ app.layout = html.Div(
 # =============================================================================
 # 4. CALLBACKS
 # =============================================================================
-
-
 @callback(
     [
         Output("spectra-file-dropdown", "options"),
-        # --- FIX: Added allow_duplicate=True ---
         Output("pixel-spectrum-combined", "figure", allow_duplicate=True),
     ],
     Input("spectra-folder-input", "value"),
@@ -603,7 +598,6 @@ def generate_and_download_csv(n_clicks, filename_input, stored_data):
         Output("slider-wl-blue", "marks"),
         Output("slider-wl-single", "marks"),
         Output("file-error-alert", "children"),
-        # --- FIX: Added allow_duplicate=True ---
         Output("pixel-spectrum-combined", "figure", allow_duplicate=True),
     ],
     Input("spectra-file-dropdown", "value"),
@@ -658,7 +652,6 @@ def set_export_button_state(stored_data, filename):
     if trigger == "spectrum-data-store":
         return stored_data is None
     return True
-
 
 # =============================================================================
 # 5. RUN THE APP
