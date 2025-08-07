@@ -4,6 +4,7 @@ dash-bootstrap-components
 
 # Library for scientific computing (handling image arrays)
 numpy
+pandas
 
 # Library to read and write NetCDF files (.nc format)
 netCDF4
